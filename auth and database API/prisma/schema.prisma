@@ -1,0 +1,37 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  fullName    String   @db.VarChar(64)
+  email       String   @unique @db.VarChar(255)
+  phoneNumber String   @db.VarChar(15)
+  password    String   @db.VarChar(255)
+  profilePic  String   @db.VarChar(254) @default("https://storage.googleapis.com/opticool-bucket/Get%20the%20We%20Heart%20It%20app!.jpeg")
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @db.Timestamp(0)
+}
+
+model eyeglasses {
+  idEyeglass    Int    @id @default(autoincrement())
+  Link          String @db.VarChar(255)
+  Name          String @db.VarChar(255)
+  Brand         String @db.VarChar(255)
+  FaceShape     String @db.VarChar(15)
+  Price         String @db.VarChar(10)
+  Gender        String @db.VarChar(10)
+  FrameColour   String @db.VarChar(100)
+  FrameShape    String @db.VarChar(20)
+  FrameStyle    String @db.VarChar(50)
+  LinkPic1      String @db.VarChar(255)
+  LinkPic2      String @db.VarChar(255)
+  LinkPic3      String @db.VarChar(255)
+  FrameMaterial String @db.VarChar(100)
+}
